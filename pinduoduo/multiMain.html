@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>curry函数测试</title>
+</head>
+<body>
+<script>
+    function multi(n){
+        var fn = function(x) {
+            return multi(n * x);
+        };
+
+        fn.valueOf = function() {
+            return n;
+        };
+
+        return fn;
+    }
+
+    multi(1)(2)(3)(4) == 24;
+</script>
+</body>
+</html>
