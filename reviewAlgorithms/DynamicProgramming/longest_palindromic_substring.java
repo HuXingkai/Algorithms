@@ -9,7 +9,9 @@ package reviewAlgorithms.DynamicProgramming;
     output: 7
  */
 public class longest_palindromic_substring {
-    public int getLongestPalindrome(String A, int n) {
+    public int[] getLongestPalindrome(String A, int n) {
+        //用来返回最长回文子串的初始、结束位置以及长度，顺序为i, j, maxlength
+        int[] ans = new int[3];
         //利用p[i][j]表示i-j的字符串是否为回文子串
         boolean [][] p=new boolean[n][n];
         int maxLength=1;
@@ -33,15 +35,25 @@ public class longest_palindromic_substring {
                     //如果字串p[i + 1][j - 1]是回文，最大长度将拓展
                     if (maxLength < j - i + 1&&p[i + 1][j - 1]) {
                         maxLength = j - i + 1;
+                        ans[0] = i;
+                        ans[1] = j;
+                        ans[2] = maxLength;
                     }
                 } else p[i][j] = false;
             }
         }
-        return maxLength;
+        return ans;
+    }
+
+    public void print_LPS(String s, int n) {
+        int[] a = getLongestPalindrome(s, n);
+        System.out.println(s.substring(a[0],a[1]+1));
     }
 
     public static void main(String[] args) {
         String s = "abc1234321ab";
-        System.out.println(new longest_palindromic_substring().getLongestPalindrome(s,12));
+        longest_palindromic_substring lps = new longest_palindromic_substring();
+        System.out.println(lps.getLongestPalindrome(s,12)[2]);
+        lps.print_LPS(s,12);
     }
 }

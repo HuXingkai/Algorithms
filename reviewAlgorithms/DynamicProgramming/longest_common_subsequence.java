@@ -11,9 +11,12 @@ package reviewAlgorithms.DynamicProgramming;
  * 算法导论 P222
  */
 public class longest_common_subsequence {
+    public int [][] b;
     public int findLCS(String A, int n, String B, int m) {
         //建立一个表用于存储LCS的长度,这里用数组表示
         int [][] c=new int[n+1][m+1];
+        //建立另一个表用于帮助构造最优解（LCS）:1代表向左，2代表斜上，3代表向上
+        b=new int[n+1][m+1];
         //output
         int length=0;
         for (int i=0;i<=m;i++) {
@@ -26,22 +29,42 @@ public class longest_common_subsequence {
             for (int j=1;j<=m;j++) {
                 if (A.charAt(i - 1) == B.charAt(j - 1)) {
                     c[i][j]=c[i-1][j-1]+1;
+                    b[i][j] = 2;
                     //只有二者序列相同的时候构成了LCS
                     if (c[i][j] > length) {
                         length=c[i][j];
                     }
                 } else if (c[i - 1][j] > c[i][j - 1]) {
                     c[i][j] = c[i - 1][j];
+                    b[i][j] = 3;
                 } else {
                     c[i][j]=c[i][j - 1];
+                    b[i][j] = 1;
                 }
             }
         }
         return length;
     }
+
+    public void print_LCS(int[][] b, String A,  int n, int m) {
+        if (n == 0 || m == 0) {
+            return;
+        }
+        if (b[n][m] == 2) {
+            print_LCS(b, A,  n - 1, m - 1);
+            System.out.print(A.charAt(n-1));
+        } else if (b[n][m] == 1) {
+            print_LCS(b, A, n, m - 1);
+        } else {
+            print_LCS(b, A,  n - 1, m);
+        }
+    }
     public static void main(String [] args){
         String A= "1A2C3D4B56";
         String B = "B1D23CA45B6A";
-        System.out.println(new longest_common_subsequence().findLCS(A,10,B,12));
+        longest_common_subsequence lcs = new longest_common_subsequence();
+        System.out.println(lcs.findLCS(A,10,B,12));
+
+        lcs.print_LCS(lcs.b,A,10,12);
     }
 }
