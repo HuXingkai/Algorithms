@@ -7,7 +7,7 @@ import java.util.Arrays;
 
  有一个容量为V的背包，和一些物品。这些物品分别有两个属性，体积w和价值v，每种物品只有一个。
  要求用这个背包装下价值尽可能多的物品，求该最大价值，背包可以不被装满。因为最优解中，每个物品都有两种可能的情况，
- 即在背包中或者不存在（背 包中有0个该物品或者 1个），所以我们把这个问题称为0-1背包问题。
+ 即在背包中或者不存在（背包中有0个该物品或者 1个），所以我们把这个问题称为0-1背包问题。
  *
  * 继续0-1背包问题，如果在上面的问题加上一个限制条件，所选择的物品必须恰好装满背包，否则输出-1。
  */
@@ -44,10 +44,10 @@ public class KnapSack01_full {
     }
 
     public static void main(String[] args) {
-        int[] w = {3, 4, 5};
-        int[] v= {4, 5, 6};
-        int weight = 10;
+        int[] w = {3, 2,3, 5};
+        int[] v= {3, 2,3, 5};
+        int weight = 5;
         KnapSack01_full full = new KnapSack01_full();
-        System.out.println(full.solve(3,weight,v,w));
+        System.out.println(full.solve(v.length,weight,v,w));
     }
 }
