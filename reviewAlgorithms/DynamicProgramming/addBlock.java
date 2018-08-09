@@ -61,9 +61,11 @@ public class addBlock {
             for (int j=0;j<2 * sum + 1;j++) {
                 dp1[j] = dp0[j];
 
+                //砖块放在A堆
                 if (j - h >= 0 && dp0[j - h] != -1) {
                     dp1[j] = Math.max(dp0[j - h], dp1[j]);
                 }
+                //砖块放在B堆
                 if (j + h <= 2 * sum && dp0[j + h] != -1) {
                     dp1[j] = Math.max(dp0[j + h] + h, dp1[j]);
                 }
