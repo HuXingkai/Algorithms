@@ -31,9 +31,11 @@ import java.util.Scanner;
  */
 public class longest_increasing_subsequence {
     public static int solve(int n, int [] arr) {
+        //dp表示以arr[i]结尾的子串的LIS长度。需要注意的：必须以arr[i]结尾
         int[] dp = new int[n];
         int max=1;
         //初始化为1，长度为1的串，上升序列的长度就是1
+        //因此上升序列的长度最小为1
         for (int i=0;i<n;i++) {
             dp[i] = 1;
         }
@@ -49,6 +51,22 @@ public class longest_increasing_subsequence {
         return max;
     }
 
+    //这么做是错误的，因为不能确定当arr[j] < arr[i]时，最大长度为dp[j] + 1。
+    // 因为dp[j]取最大时，可能并不包含arr[i]这项元素
+    public static int solve1(int n, int [] arr) {
+        int[] dp = new int[n];
+        //初始化为1，长度为1的串，上升序列的长度就是1
+        dp[0] = 1;
+        for (int i=1;i<n;i++) {
+            for (int j=0;j<i;j++) {
+                if (arr[j] < arr[i]) {
+                    dp[i] = Math.max(dp[i-1], dp[j] + 1);
+                }
+            }
+        }
+        System.out.println(Arrays.toString(dp));
+        return dp[n-1];
+    }
     public static void main(String[] args) {
         /*Scanner scanner = new Scanner(System.in);
         while (scanner.hasNextInt()) {
@@ -59,8 +77,9 @@ public class longest_increasing_subsequence {
             }
             System.out.println(solve(arr.length,arr));
         }*/
-        int[] arr = {3,4,7,5,6};
+        int[] arr = {1,7,3,5,9,4,8};
         System.out.println(solve(arr.length,arr));
+        System.out.println(solve1(arr.length,arr));
     }
 
 }
