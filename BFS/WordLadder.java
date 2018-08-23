@@ -31,6 +31,7 @@ public class WordLadder {
             return 0;
         }
         Queue<String> queue = new LinkedList<>();
+        //HashSet的作用是在O(1)的时间复杂度内取出某个值，或者判断某个值是否存在
         Set<String> visited = new HashSet<>();
         queue.add(beginWord);
         int length=1;
@@ -55,7 +56,8 @@ public class WordLadder {
                 }
                 wordchar[j]=ex;
             }
-            //每当count=0的时候，表明当前步数图的所有分支已经走完。搜索层数（length）加一，然后记录当前的queue的长度，代表当前图的分支数
+            //每当count=0的时候，表明当前步数图的所有分支已经走完。搜索层数（length）加一，然后记录当前的queue的长度，
+            // 代表当前图的分支数
             if (count == 0) {
                 count=queue.size();
                 length++;
