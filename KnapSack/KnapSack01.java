@@ -1,6 +1,7 @@
 package KnapSack;
 
 import java.util.Arrays;
+import java.util.Scanner;
 
 /**
  * 0-1背包问题
@@ -109,14 +110,25 @@ public class KnapSack01 {
     }*/
 
     public static void main(String[] args) {
-        int[] v = {0, 60, 100, 120};
+        /*int[] v = {0, 60, 100, 120};
         int[] w = {0, 10, 20, 30};
         int weight = 50;
         int[][] c = new int[v.length][weight + 1];
         int answer = solve(3, weight, v, w, c);
         System.out.println(answer);
         System.out.println("优化后的输出：");
-        System.out.println(reduceSpace(3,weight,v,w));
+        System.out.println(reduceSpace(3,weight,v,w));*/
+        Scanner sc = new Scanner(System.in);
+        int w = sc.nextInt();
+        int m = sc.nextInt();
+        int[] weight = new int[m + 1];
+        int[] value = new int[m + 1];
+        for (int i=1;i<=m;i++) {
+            weight[i] = sc.nextInt();
+            value[i] = sc.nextInt();
+        }
+        int[][] c = new int[m + 1][w + 1];
+        solve(m, w, value, weight, c);
 
 
     }
