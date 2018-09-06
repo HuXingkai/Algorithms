@@ -1,6 +1,7 @@
 package xiechengTest;
 
 /**Java实现LRU（最近最少使用）缓存
+ * 基础内容：http://wiki.jikexueyuan.com/project/java-collection/linkedhashset.html
  * https://blog.csdn.net/liuzhenfeng/article/details/6254224
  * https://blog.csdn.net/WeiJiaXiaoBao/article/details/79216700
  * Created by andy on 2018/9/4.
