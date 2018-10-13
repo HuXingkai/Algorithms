@@ -2,6 +2,11 @@ package didiTest;
 
 import java.util.Scanner;
 
+/**
+ * 问题是这样的：一个整数数组中的元素有正有负，在该数组中找出一个连续子数组，
+ * 要求该连续子数组中各元素的和最大，这个连续子数组便被称作最大连续子数组。
+ * 比如数组{2,4,-7,5,2,-1,2,-4,3}的最大连续子数组为{5,2,-1,2}，最大连续子数组的和为5+2-1+2=8。
+ */
 public class MaxSubArrayConquer {
     public static long findMaxCrossingSubarray(int low,int mid, int high,long...A){
         long leftSum=-1000000000L;
